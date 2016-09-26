@@ -27,9 +27,9 @@ disqus:
 
 # URL
 url:                "https://lyhbarry.github.io"
-#url:               "localhost:4000"
-baseurl:            ""
-
+#url:                "localhost:4000"
+baseurl:            "https://lyhbarry.github.io"
+#baseurl:            ""
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:           Asia/Singapore
