@@ -9,7 +9,9 @@ share: false
 ---
 
 ## Building User Interface with Lablgtk
-<b>Lablgtk</b> is an OCaml interface for <b>Gtk</b>, which is a toolkit for writing graphical applications. In this post, we will be looking at how we can make use of <i>lablgtk</i> to write a simple application to try to understand how <i>lablgtk</i> works.
+<b>Lablgtk</b> is an OCaml interface for <b>Gtk</b>, which is a toolkit for writing graphical applications. In this post, I will be looking at how I can make use of <b>lablgtk</b> to write a simple application to try to understand how <b>lablgtk</b> works. 
+
+I will following and covering the key points in this [OCaml tutorial](https://ocaml.org/learn/tutorials/introduction_to_gtk.html), which introduces the basics to writing a simple lablgtk program.
 
 ### Compiling a lablgtk program
 First, we will look at how we can compile a labgtk using <i>ocamlfind</i>. The following command is an example of how we can compile a simple lablgtk application `simple.ml`:
@@ -18,3 +20,4 @@ First, we will look at how we can compile a labgtk using <i>ocamlfind</i>. The f
 
 With `ocamlfind` and `-linkpkg`, we can do away with including our path to `lablgtk2` in our compilation command. This will help to reduce the chances of encountering a compilation error or any confusion involved in providing the correct directory in which our `lablgtk` lies in.
 
+###
