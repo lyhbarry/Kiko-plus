@@ -2,7 +2,7 @@
 layout: post
 title: "OCaml with Lablgtk"
 description: "Building User Interface with Lablgtk"
-date: 2016-09-26
+date: 2016-10-04
 tags: [test]
 comments: false
 share: false
@@ -72,3 +72,13 @@ let button = GButton.button ~label:"Push me!"
 button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
 ```
 
+Let us focus on this line of code in particular:
+
+```ocaml
+button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
+```
+
+In the code, we are connecting the <i>button</i> to the <i>clicked</i> signal and then we make a <i>callback</i> to a function which prints a string whenever the button is clicked on. This block of code is important in helping us to understand how to add widgets and functionalities to our application. Referring to the <i>lablgtk</i> documentation, we can observe that, in general, most widgets are to be build in this form and from this example we can then move on to implementing other widgets to build a more robust application.
+
+### Part of a bigger picture
+The aim of my FYP is to build web UIs with OCaml which will be modelled after the MVC model that Elm uses. Why then are we learning to build applications with <i>lablgtk</i>? The aim is to first build an application with <i>lablgtk</i> and then look at how we can mirror the MVC model on OCaml to provide the same if not an almost similar model.
