@@ -3,7 +3,7 @@ layout: post
 title: "OCaml with Lablgtk"
 description: "Building User Interface with Lablgtk"
 date: 2016-10-04
-tags: [test]
+tags: [fyp, ocaml, lablgtk]
 comments: false
 share: false
 ---
