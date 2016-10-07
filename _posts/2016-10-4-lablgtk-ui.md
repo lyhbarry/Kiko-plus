@@ -9,9 +9,9 @@ share: false
 ---
 
 ## Building User Interface with Lablgtk
-<b>Lablgtk</b> is an OCaml interface for <b>Gtk</b>, which is a toolkit for writing graphical applications. In this post, I will be looking at how I can make use of <b>lablgtk</b> to write a simple application to try to understand how <b>lablgtk</b> works. 
+<b>Lablgtk</b> is an OCaml interface for <b>Gtk</b>, which is a toolkit for writing graphical applications. In this post, we will be looking at how I can make use of <b>lablgtk</b> to write a simple application to try to understand how <b>lablgtk</b> works. 
 
-I will following and covering the key points in this [OCaml tutorial](https://ocaml.org/learn/tutorials/introduction_to_gtk.html), which introduces the basics to writing a simple lablgtk program.
+We will following and covering the key points in this [OCaml tutorial](https://ocaml.org/learn/tutorials/introduction_to_gtk.html), which introduces the basics to writing a simple lablgtk program.
 
 ### Compiling a lablgtk program
 First, we will look at how we can compile a labgtk using <i>ocamlfind</i>. The following command is an example of how we can compile a simple lablgtk application `simple.ml`:
@@ -21,17 +21,13 @@ First, we will look at how we can compile a labgtk using <i>ocamlfind</i>. The f
 With `ocamlfind` and `-linkpkg`, we can do away with including our path to `lablgtk2` in our compilation command. This will help to reduce the chances of encountering a compilation error or any confusion involved in providing the correct directory in which our `lablgtk` lies in.
 
 ### Dissecting simple.ml
+In this section, we will look at the basics of a lablgtk program with the following program taken from the tutorial.
+
 ```ocaml
 open GMain
 open GdkKeysyms
 
 let locale = GtkMain.Main.init ()
-
-let count = ref 0
-
-let counter ct =
-  let ct = ct + 1 in
-  ct
 
 let main () =
   let window = GWindow.window ~width:320 ~height:240
@@ -45,30 +41,11 @@ let main () =
   let accel_group = factory#accel_group in
   let file_menu = factory#add_submenu "File" in
 
-  (* File menu *)
-  let factory = new GMenu.factory file_menu ~accel_group in
-  factory#add_item "Quit" ~key:_Q ~callback: Main.quit;
-
-  (* add text view with scroll bars *)
-  let scroll = GBin.scrolled_window
-               ~hpolicy:`AUTOMATIC ~vpolicy:`AUTOMATIC
-               ~packing:vbox#add () in
-  let textview = GText.view ~packing:scroll#add_with_viewport () in
-  (* set text *)
-  textview#buffer#set_text "multi-\nline\ntext";
-
   (* Button *)
-  let add_button = GButton.button ~label:"+"
+  let button = GButton.button ~label:"+"
                               ~packing:vbox#add () in
-  add_button#connect#clicked ~callback: (fun () -> prerr_endline "+");
+  button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
 
-  let minus_button = GButton.button ~label:"-"
-                              ~packing:vbox#add () in 
-  minus_button#connect#clicked ~callback: (fun () -> prerr_endline "-");
-
-  let minus_button = GButton.toggle_button ~label:"Toggle"
-                              ~packing:vbox#add () in 
-  minus_button#connect#clicked ~callback: (fun () -> prerr_endline "Toggled!");  
 
   (* Display the windows and enter Gtk+ main loop *)
   window#add_accel_group accel_group;
@@ -77,3 +54,21 @@ let main () =
 
 let () = main ()
 ```
+
+After encountering countless compilation errors with other lablgtk examples, for most cases the issue arises with the lack of the following code:
+
+```ocaml
+let locale = GtkMain.Main.init ()
+```
+
+This line out code is present to initiate a <i>lablgtk</i> program. This line of code is essential for building a lablgtk program and without it we will not be able to compile and build the application.
+
+Next, we will look at <i>widgets</i>, the button widget in particular, in <i>lablgtk</i> in the following block of code:
+
+```ocaml
+(* Button *)
+let button = GButton.button ~label:"Push me!"
+                          ~packing:vbox#add () in
+button#connect#clicked ~callback: (fun () -> prerr_endline "Ouch!");
+```
+
